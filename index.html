@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <script src='file:///android_asset/app.js'></script>
+</head>
+
+<style>
+  *{
+    padding:0px;
+    margin:0px;
+    background: dimgrey;
+  }
+  
+  #h1{
+    text-align:center;
+    color:white;
+    padding:10px;
+  }
+  
+  #input{
+    text-align:center;
+    padding:30px;
+  }
+  
+  #name{
+    height:40px;
+    outline:none;
+    background:white;
+    border:solid 2px white;
+    border-radius:5px;
+  }
+  #post{
+    height:40px;
+     margin-top:5px;
+    outline:none;
+    background:white;
+    border:solid 2px white;
+    border-radius:5px;
+  }
+  #create{
+    background:lightblue;
+    outline:none;
+    height:30px;
+    margin-top:5px;
+    border:solid 2px lightblue;
+    border-radius:5px;
+  }
+	
+	#newDiv{
+	  background:white;
+	  padding:20px;
+	  margin-top:5px;
+	  margin-left:5px;
+	  margin-right:5px;
+	  border-radius:5px;
+	}
+	
+	#btnHeart{
+	  height:30px;
+	  width:60px;
+	  margin-top:5px;
+	  background:lightblue;
+	  outline:none;
+	  border:solid 2px lightblue;
+	  border-radius:5px;
+	}
+	
+		#btnAngry{
+	  height:30px;
+	  width:60px;
+	  margin-top:5px;
+	  margin-left:5px;
+	  background:lightblue;
+	  outline:none;
+	  border:solid 2px lightblue;
+	  border-radius:5px;
+	}
+	
+	h3{
+	  background: white;
+	}
+	
+	p{
+	  padding: 10px;
+	  background: white;
+	}
+	
+</style>
+
+<body>
+<div id="h1">
+  <h1>Create Post</h1>
+</div>
+<div id="input">
+<form>
+  <input type="text" id="name" placeholder="Your Name" /><br>
+  <input type="text" id="post" placeholder="Your Post" /><br>
+  <button id="create" type="reset">Create Post</button>
+ <form>
+</div>
+	
+	
+	
+	
+<script>
+   var btnCreate = document.getElementById('create');
+   var names = [];
+   var posts = [];
+   
+   
+   btnCreate.addEventListener('click',() => {
+     
+     var name = document.getElementById('name').value;
+     var post = document.getElementById('post').value;
+     var totalHeart = 0;
+     var totalAngry = 0;
+     
+     if(name == "" || post == ""){
+     alert("Empty text not Allowed");
+     }else{
+     names.push(name);
+     posts.push(post);
+     
+     var newDiv = document.createElement('div');
+     newDiv.id = 'newDiv';
+      var btnHeart = document.createElement('button');
+      btnHeart.id = 'btnHeart';
+      btnHeart.textContent = 'Like';
+      
+       var btnAngry = document.createElement('button');
+      btnAngry.id = 'btnAngry';
+      btnAngry.textContent = 'Dislike';
+      
+      
+      
+     for(var i = 0;i<names.length;i++){
+     
+       newDiv.innerHTML  = `<h3>Post from ${names[i]}</h3>` + `<p>${posts[i]}</p>`;
+      
+       
+       document.body.appendChild(newDiv).appendChild(btnHeart);
+       newDiv.appendChild(btnAngry);
+   
+     }
+     
+     btnHeart.onclick = () => {
+     if(totalHeart == 0){
+       totalHeart++;
+       btnHeart.textContent = 'Like' +'('+totalHeart+') ';
+       }else{
+       totalHeart--;
+       btnHeart.textContent = 'Like';
+       }
+     }
+     
+     btnAngry.onclick = () => {
+     if(totalAngry == 0){
+       totalAngry++;
+       btnAngry.textContent = 'Dislike' +'('+totalAngry+')';
+       }else{
+       totalAngry--;
+       btnAngry.textContent = 'Dislike';
+       }
+     }
+    }
+     
+   });
+   
+   
+   
+</script>
+</body>
+</html>
